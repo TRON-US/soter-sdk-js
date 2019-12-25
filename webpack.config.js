@@ -92,8 +92,8 @@ module.exports = [
         ...baseConfig,
         output: {
             path: path.resolve(__dirname, 'dist'),
-            filename: 'soter-sdk.js',
-            library: 'soter-sdk',
+            filename: 'Soter.js',
+            library: 'Soter',
             libraryTarget: 'umd',
             libraryExport: 'default',
             umdNamedDefine: true

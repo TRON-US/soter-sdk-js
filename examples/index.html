@@ -1,0 +1,25 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Soter - query</title>
+</head>
+<body>
+    <script src="../dist/Soter.js"></script>
+    <script src="./tronWeb.js"></script>
+    <script>
+       
+
+        const tronWeb = new TronWeb({
+                fullHost: 'https://api.shasta.trongrid.io',
+                privateKey: 'c5251ad177f27a782f3e0df51cc817d4f5f7e7465241e2a724c8c4312195f163'
+        })
+         
+        let soter = new Soter(tronWeb)
+       
+        console.log( soter.query.userBalance())
+    </script>
+</body>
+</html>

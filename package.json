@@ -13,7 +13,10 @@
     "type": "git",
     "url": "git+https://github.com/TRON-US/soter-sdk-js.git"
   },
-  "author": "",
+  "author": {
+    "name": "Santino",
+    "url": "https://github.com/Fdango"
+  },
   "license": "ISC",
   "bugs": {
     "url": "https://github.com/TRON-US/soter-sdk-js/issues"
@@ -22,11 +25,8 @@
   "dependencies": {
     "@babel/runtime": "^7.0.0",
     "axios": "^0.19.0",
-    "babel-runtime": "^6.26.0"
-  },
-  "author": {
-    "name": "Santino",
-    "url": "https://github.com/Fdango"
+    "babel-runtime": "^6.26.0",
+    "utils": "^0.3.1"
   },
   "devDependencies": {
     "@babel/core": "^7.0.0",
