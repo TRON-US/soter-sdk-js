@@ -1,20 +1,26 @@
 import Index from './Index';
-import utils from 'utils';
 
 export default class Query extends Index {
 
     constructor(soter) {
         super(soter);
+        this.soter = soter
+        this.tronWeb = this.soter.tronWeb
     }
 
     async userBalance() {
+        console.log(this.soter)
+        console.log(this.tronWeb)
+        let timestamp = Date.parse( new Date())/1000;
+        
+        let rawdata = {
+            useraddr:  this.tronWeb.defaultAddress.base58,
+            timestamp: timestamp
+        }
 
-        this.validator.validateNumber({ n: 'addedVotes', v: addedVotes}, '>=', 0);
-        if (srAddress)
-            this.validator.validateAddress(srAddress);
-            let isMainNet = this.tronWeb.fullNode.host === 'https://api.trongrid.io';
-            srAddress = this.tronWeb.address.toHex(srAddress);
+        let signature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(rawdata)));
 
+        console.log(signature)
     }
 
 }
