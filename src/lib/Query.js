@@ -26,7 +26,10 @@ export default class Query extends Index {
        
         try {
             const response = await this.axios({
-                url: `http://localhost:30002/api/v1/balance`,
+                headers: {
+                    'Content-Type': 'application/json;charset=UTF-8'
+                },
+                url: `http://localhost:8101/api/v1/balance`,
                 method: 'get'
             });
             console.log(response);
