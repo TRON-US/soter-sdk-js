@@ -59,7 +59,7 @@ module.exports = [
         ...baseConfig,
         output: {
             path: path.resolve(__dirname, 'dist'),
-            filename: 'tronstation-sdk.node.js',
+            filename: 'Soter-sdk.node.js',
             libraryTarget: 'commonjs2',
             libraryExport: 'default'
         },
