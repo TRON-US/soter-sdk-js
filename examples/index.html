@@ -10,16 +10,54 @@
     <script src="../dist/Soter.js"></script>
     <script src="./tronWeb.js"></script>
     <script>
-       
+        (async function(){
 
-        const tronWeb = new TronWeb({
-                fullHost: 'https://api.shasta.trongrid.io',
-                privateKey: 'c5251ad177f27a782f3e0df51cc817d4f5f7e7465241e2a724c8c4312195f163'
-        })
-         
-        let soter = new Soter(tronWeb)
-       
-        console.log( soter.query.userBalance())
+            const tronWeb = new TronWeb({
+                        fullHost: 'https://api.shasta.trongrid.io',
+                        privateKey: 'c5251ad177f27a782f3e0df51cc817d4f5f7e7465241e2a724c8c4312195f163'
+                })
+                let soter = new Soter(tronWeb)
+                
+                let timestamp = Date.parse(new Date())
+
+                // let data = {
+                //     user_address:  tronWeb.defaultAddress.base58,
+                //     timestamp: timestamp
+                // }
+
+             
+                // let signature = await tronWeb.trx.sign( tronWeb.toHex(JSON.stringify(data)))
+
+                
+                // // Balance
+                // let userBlance = await soter.query.userBalance(tronWeb.defaultAddress.base58, signature, timestamp)
+                // console.log(userBlance)
+                
+
+
+                // History
+
+                // let data = {
+                //     start_date: 1572348598200,
+                //     end_date: 1577434880000,
+                //     offset: 0,
+                //     limit: 10,
+                //     type: 0,
+                //     timestamp: timestamp
+                // }
+
+                // let signature = await tronWeb.trx.sign( tronWeb.toHex(JSON.stringify(data)))
+                // let historyQuery = await soter.query.queryUserDepositHistory(tronWeb.defaultAddress.base58, data, signature)
+
+                // console.log(historyQuery)
+
+
+                // autoplay
+
+                let autopay = await soter.set.setAutopay()
+                console.log(autopay)
+        })()
+            
     </script>
 </body>
 </html>

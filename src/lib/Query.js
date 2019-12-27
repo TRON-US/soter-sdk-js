@@ -1,4 +1,5 @@
 import Index from './Index';
+// import utils from 'utils';
 
 export default class Query extends Index {
 
@@ -8,45 +9,54 @@ export default class Query extends Index {
         this.tronWeb = this.soter.tronWeb
     }
 
-    async userBalance() {
-        let timestamp = Date.parse( new Date())/1000;
-        
-        let data = {
-            user_address:  this.tronWeb.defaultAddress.base58,
-            timestamp: timestamp
-        }
-
-        let signature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(data)));
+    async userBalance(fromAddress = this.tronWeb.defaultAddress.base58, signature = '', timestamp) {
+        this.validator.validateAddress(fromAddress)
 
         let rawdata = {
-            user_address: this.tronWeb.defaultAddress.base58,
-            raw_data: data,
+            user_address: fromAddress,
+            raw_data: {
+                user_address:  fromAddress,
+                timestamp
+            },
             signature: signature
         }
-       
-        try {
-            const response = await this.axios({
-                headers: {
-                    'Content-Type': 'application/json;charset=UTF-8'
-                },
-                url: `http://localhost:8101/api/v1/balance`,
-                method: 'get'
-            });
-            console.log(response);
-            return response.data
 
-          } catch (error) {
-            console.error(error);
-          }
-       
+        const response = await this.client({
+            url: `/api/v1/balance`,
+            params: rawdata,
+            method: 'get'
+        })
+        
+        return response.data
     }
 
-    async queryUserDepositHistory() {
+    async queryUserDepositHistory(fromAddress = this.tronWeb.defaultAddress.base58, options = {}, signature = '' ) {
+        this.validator.validateAddress(fromAddress)
+
+        let data = {
+            user_address: fromAddress,
+            raw_data: options,
+            signature: signature
+        }
+
+        const response = await this.client({
+            url: `/api/v1/history`,
+            params: data,
+            method: 'get'
+        })
+        
+        return response.data
 
     }
 
     async queryUserOrderList() {
-
+        // const response = await this.client({
+        //     url: `/api/v1/history`,
+        //     params: data,
+        //     method: 'get'
+        // })
+        
+        // return response.data
     }
 
     async queryUserUploadedFiles() {

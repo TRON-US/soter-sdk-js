@@ -1,8 +1,8 @@
 const _ = require("lodash");
 export default class Apis {
 
-    constructor(tronStation) {
-        this.tronWeb = tronStation.tronWeb;
+    constructor(Soter) {
+        this.tronWeb = Soter.tronWeb;
         this.utils = this.tronWeb.utils;
     }
 
