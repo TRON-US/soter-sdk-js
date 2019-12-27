@@ -7,6 +7,7 @@ export default class Query extends Index {
         super(soter);
         this.soter = soter
         this.tronWeb = this.soter.tronWeb
+        
     }
 
     async userBalance(fromAddress = this.tronWeb.defaultAddress.base58, signature = '', timestamp) {
