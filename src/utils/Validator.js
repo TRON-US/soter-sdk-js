@@ -9,4 +9,4 @@ export default class Validator {
         if (!this.tronWeb.isAddress(address))
             throw new Error('Invalid address provided.');
     }
-};
+}

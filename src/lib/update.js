@@ -1,18 +1,18 @@
 import Index from './index';
 
-export default class Set extends Index {
+export default class Update extends Index {
 
     constructor(soter) {
         super(soter);
         this.soter = soter
         this.tronWeb = this.soter.tronWeb
-        
     }
 
-    async setAutopay(autopay = true) {
-        let timestamp = Date.parse(new Date())
+    
+    async userInformation() {
         let data = {
-            autopay,
+            email: 'user@email.com',
+            phone_number: '15712341234',
             timestamp
         }
         let signature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(data)))
@@ -24,7 +24,7 @@ export default class Set extends Index {
         }
 
         const response = await this.client({
-            url: `/api/v1/autopay`,
+            url: `/api/v1/edit_profile`,
             data: rawdata,
             method: 'post'
         })

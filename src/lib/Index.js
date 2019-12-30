@@ -1,6 +1,6 @@
-const client = require('./httpquest');
+const client = require('../utils/httpquest');
 import Soter from '../index';
-import Validator from '../utils/Validator';
+import Validator from '../utils/validator';
 import Apis from '../utils/Apis';
 
 // axios.defaults.headers['Content-Type'] = 'application/json';

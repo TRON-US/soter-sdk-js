@@ -1,5 +1,5 @@
-import Index from './Index';
-// import utils from 'utils';
+import Index from '.';
+import { dateNow } from '../utils/Apis';
 
 export default class Query extends Index {
 
@@ -7,31 +7,41 @@ export default class Query extends Index {
         super(soter);
         this.soter = soter
         this.tronWeb = this.soter.tronWeb
-        
+
     }
 
-    async userBalance(fromAddress = this.tronWeb.defaultAddress.base58, signature = '', timestamp) {
+    async userBalance(fromAddress = this.tronWeb.defaultAddress.base58) {
+
         this.validator.validateAddress(fromAddress)
 
-        let rawdata = {
+        let timestamp = Date.parse(new Date())
+
+        let unSigned = {
+            user_address: fromAddress,
+            timestamp: timestamp
+        }
+     
+        let signature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(unSigned)))
+
+        let options = {
             user_address: fromAddress,
             raw_data: {
-                user_address:  fromAddress,
+                user_address: fromAddress,
                 timestamp
             },
-            signature: signature
+            signature
         }
 
         const response = await this.client({
             url: `/api/v1/balance`,
-            params: rawdata,
+            params: options,
             method: 'get'
         })
         
         return response.data
     }
 
-    async queryUserDepositHistory(fromAddress = this.tronWeb.defaultAddress.base58, options = {}, signature = '' ) {
+    async queryUserDepositHistory(fromAddress = this.tronWeb.defaultAddress.base58, options = {}, signature) {
         this.validator.validateAddress(fromAddress)
 
         let data = {
@@ -60,7 +70,21 @@ export default class Query extends Index {
         // return response.data
     }
 
-    async queryUserUploadedFiles() {
+    async queryUserUploadedFiles(options, signature) {
+
+        let data = {
+            user_address: this.tronWeb.defaultAddress.base58,
+            raw_data: options,
+            signature: signature
+        }
+
+        const response = await this.client({
+            url: `/api/v1/files`,
+            params: data,
+            method: 'get'
+        })
+        
+        return response.data
 
     }
 
