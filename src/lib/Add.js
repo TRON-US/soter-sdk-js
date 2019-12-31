@@ -8,6 +8,7 @@ export default class Add extends Index {
     }
 
     async addFile(files) {
+        
         let timestamp = Date.parse(new Date())
         let formData = new FormData()
         let data = {
@@ -16,6 +17,7 @@ export default class Add extends Index {
             request_id: this.apis.uuidv4(),
             timestamp
         }
+        console.log(data)
 
         let signature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(data)))
 
@@ -23,7 +25,7 @@ export default class Add extends Index {
         formData.append("file", files);
         formData.append("signature", signature)
 
-       
+        console.log(formData)
         const response = await this.client({
             url: `/api/v1/add`,
             data: formData,
