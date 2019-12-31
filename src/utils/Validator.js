@@ -9,4 +9,10 @@ export default class Validator {
         if (!this.tronWeb.isAddress(address))
             throw new Error('Invalid address provided.');
     }
+
+    validatorDate(timestamp) {
+        if (new Date(timestamp).getTime() <= 0 )
+            throw new Error('Invalid time.');
+
+    }
 }

@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Soter - query</title>
+</head>
+<body>
+
+    <script src="../dist/Soter.js"></script>
+    <script src="./tronWeb.js"></script>
+    <script>
+      
+        (async function(){
+
+            var tronWeb = new TronWeb({
+                        fullHost: 'https://api.shasta.trongrid.io',
+                        privateKey: 'c5251ad177f27a782f3e0df51cc817d4f5f7e7465241e2a724c8c4312195f163'
+                })
+             
+                var soter = new Soter(tronWeb)
+                let timestamp = Date.parse(new Date())
+
+
+
+                /* Query userBalance function
+                 *  @params: userBalance
+                 *  userBalance: default(from address) | new address
+                */
+                // let userBlance = await soter.query.userBalance()
+                // console.log(userBlance)
+                
+
+                /* Query User Deposit History
+                 *  @params: start_date, end_date, offset <type: number, default: 0 >, limit<type: number, default: 0>
+                 *  
+                */
+                // let data = {
+                //     start_date: 1572348598200,
+                //     end_date: 1577434880000,
+                //     offset: 0,
+                //     limit: 10
+                // }
+
+                // let historyQuery = await soter.query.queryUserDepositHistory(data)
+                // console.log(historyQuery)
+
+
+                /* Query User Order List
+                 *  @params: start_date, end_date, offset <type: number,default: 0 >, limit<type: number,default: 0>
+                 *  
+                */
+                // let data = {
+                //     start_date: 1572348598200,
+                //     end_date: 1577434880000,
+                //     offset: 0,
+                //     limit: 10
+                // }
+
+                // let historyQuery = await soter.query.queryUserOrderList(data)
+                // console.log(historyQuery)
+
+
+                /* Query User Uploaded Files
+                 *  @params: start_date, end_date, offset <type: number, default: 0 >, limit<type: number, default: 0>, is_deleted <type: Boolean,default: false>,
+                 *  
+                */
+                // let raw_data =  {
+                //     start_date: 1577774585986,
+                //     end_date: 1577774612991,
+                //     offset:0,
+                //     limit: 10,
+                //     is_deleted: false
+                // }
+
+              
+                // let queryUserUploadedFiles = await soter.query.queryUserUploadedFiles(raw_data);
+                // console.log(queryUserUploadedFiles)
+        
+        })()
+    </script>
+</body>
+</html>

@@ -1,6 +1,5 @@
 import Query from 'lib/query'
 import Add from 'lib/add'
-import Get from 'lib/get'
 import Set from 'lib/set'
 import Update from 'lib/update'
 import Apis from 'utils/apis';
@@ -17,7 +16,6 @@ export default class Soter {
         this.tronWeb = tronWeb;
         this.apis = new Apis(this);
         this.add = new Add(this);
-        this.get = new Get(this)
         this.set = new Set(this);
         this.query = new Query(this)
         this.add = new Add(this);
@@ -33,7 +31,6 @@ export default class Soter {
         this.defaultAddress = tronWeb.defaultAddress;
         this.apis = new Apis(this);
         this.add = new Add(this);
-        this.get = new Get(this)
         this.set = new Set(this);
         this.query = new Query(this)
         this.add = new Add(this);

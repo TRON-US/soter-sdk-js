@@ -9,17 +9,23 @@ export default class Update extends Index {
     }
 
     
-    async userInformation() {
-        let data = {
-            email: 'user@email.com',
-            phone_number: '15712341234',
-            timestamp
-        }
-        let signature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(data)))
+    async userInformation(options = {}) {
+       
+        let timestamp =  this.apis.dateNow()
+
+        const unSigndata = Object.assign(
+            options, 
+            {
+                timestamp
+            }
+        )
+
+
+        let signature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(unSigndata)))
 
         let rawdata = {
             user_address: this.tronWeb.defaultAddress.base58 ,
-            raw_data: data,
+            raw_data: unSigndata,
             signature: signature
         }
 
