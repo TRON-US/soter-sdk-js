@@ -67,12 +67,12 @@ export default class Query extends Index {
             }
         )
 
-        let signature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(historyRawdata)))
+        let historySignature = await this.tronWeb.trx.sign(this.tronWeb.toHex(JSON.stringify(historyRawdata)))
 
         let signData = {
             user_address: this.tronWeb.defaultAddress.base58,
             raw_data: historyRawdata,
-            signature
+            signature: historySignature
         }
        
         const response = await this.client({
@@ -111,12 +111,12 @@ export default class Query extends Index {
             }
         )
 
-        let signature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(unSigndata)))
+        let listSignature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(unSigndata)))
 
         let signData = {
             user_address: this.tronWeb.defaultAddress.base58,
             raw_data: unSigndata,
-            signature
+            signature: listSignature
         }
        
         const orderList = await this.client({
@@ -155,12 +155,12 @@ export default class Query extends Index {
             }
         )
 
-        let signature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(unSigndata)))
+        let fileSignature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(unSigndata)))
 
         let data = {
             user_address: this.tronWeb.defaultAddress.base58,
             raw_data: unSigndata,
-            signature
+            signature: fileSignature
         }
 
        

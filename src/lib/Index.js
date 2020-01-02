@@ -1,5 +1,4 @@
-// const client = require('../utils/httpquest');
-import HttpProvider from '../utils/httpquest'
+const client = require('../utils/httpquest');
 import Soter from '../index';
 import Validator from '../utils/validator';
 import Apis from '../utils/apis';

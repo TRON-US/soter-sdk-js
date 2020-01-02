@@ -1,8 +1,6 @@
 export default class Apis {
 
-    constructor(soter) {
-        this.tronWeb = soter.tronWeb;
-        this.utils = this.tronWeb.utils;
+    constructor() {
     }
 
     dateNow() {
