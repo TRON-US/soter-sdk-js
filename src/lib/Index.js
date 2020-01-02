@@ -1,10 +1,9 @@
-const client = require('../utils/httpquest');
+// const client = require('../utils/httpquest');
+import HttpProvider from '../utils/httpquest'
 import Soter from '../index';
 import Validator from '../utils/validator';
-import Apis from '../utils/Apis';
+import Apis from '../utils/apis';
 
-// axios.defaults.headers['Content-Type'] = 'application/json';
-// axios.defauls.baseURL = 'http://65.52.163.204:8101'
 export default class Index {
 
     constructor(soter) {

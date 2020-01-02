@@ -1,8 +1,21 @@
-var axios = require('axios');
+import axios from 'axios'
 
-var axiosInstance = axios.create({
-  baseURL: 'http://65.52.163.204:8101/',
-  /* other custom settings */
-});
+export default class HttpProvider {
+  constructor() {
+    this.instance = axios.create({
+      baseURL: 'http://65.52.163.204:8101/'  
+    });
+  }
 
-module.exports = axiosInstance;
+  request(url, payload = {}, method = 'get') {
+    method = method.toLowerCase();
+
+    return this.instance.request({
+        data: method == 'post' && Object.keys(payload).length ? payload : null,
+        params: method == 'get' && payload,
+        url,
+        method
+    }).then(({data}) => data);
+  }
+}
+

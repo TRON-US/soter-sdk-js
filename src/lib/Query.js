@@ -58,7 +58,7 @@ export default class Query extends Index {
             limit: 10
         }
 
-        const raw_data = Object.assign(
+        let historyRawdata = Object.assign(
             defaultObject, 
             options, 
             {
@@ -67,11 +67,11 @@ export default class Query extends Index {
             }
         )
 
-        let signature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(raw_data)))
+        let signature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(historyRawdata)))
 
         let signData = {
             user_address: this.tronWeb.defaultAddress.base58,
-            raw_data,
+            raw_data: historyRawdata,
             signature
         }
        
@@ -115,7 +115,7 @@ export default class Query extends Index {
 
         let signData = {
             user_address: this.tronWeb.defaultAddress.base58,
-            raw_data,
+            raw_data: unSigndata,
             signature
         }
        
