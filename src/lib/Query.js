@@ -1,4 +1,4 @@
-import Index from '.';
+import Index from './index';
 
 export default class Query extends Index {
 
@@ -10,6 +10,37 @@ export default class Query extends Index {
 
     }
 
+    toBalanceRawData(fromAddress) {
+        this.validator.validateAddress(fromAddress)
+
+        let timestamp =  this.apis.dateNow()
+
+        let unSigned = {
+            user_address: fromAddress,
+            timestamp
+        }
+
+        return unSigned
+    }
+
+    async userSignBalance(fromAddress, rawData, signature) {
+        this.validator.validateAddress(fromAddress)
+
+        let signOptions = {
+            user_address: fromAddress,
+            raw_data: rawData,
+            signature: signature
+        }
+
+        const signResponse = await this.client({
+            url: `/api/v1/balance`,
+            params: signOptions,
+            method: 'get'
+        })
+
+        return signResponse.data
+    }
+    
     async userBalance(fromAddress = this.tronWeb.defaultAddress.base58) {
 
         this.validator.validateAddress(fromAddress)
@@ -39,6 +70,53 @@ export default class Query extends Index {
         })
         
         return response.data
+    }
+
+    toHistoryRawData(options = {}) {
+
+        this.validator.validatorDate(options.start_date)
+        this.validator.validatorDate(options.end_date)
+
+        if(options.start_date >= options.end_date)
+            throw new Error('End time cannot be less than start time.');
+
+        let timestamp =  this.apis.dateNow()
+            
+        const defaultObject = {
+            start_date: null,
+            end_date: null,
+            offset: 0,
+            limit: 10
+        }
+
+        let historyRawdata = Object.assign(
+            defaultObject, 
+            options, 
+            {
+                type: 0,
+                timestamp
+            }
+        )
+
+        return historyRawdata
+    }
+
+    async userSignHistory(fromAddress, rawData, signature) {
+        this.validator.validateAddress(fromAddress)
+
+        let signOptions = {
+            user_address: fromAddress,
+            raw_data: rawData,
+            signature: signature
+        }
+
+        const signHistory = await this.client({
+            url: `/api/v1/history`,
+            params: signOptions,
+            method: 'get'
+        })
+        
+        return signHistory.data
     }
 
     async queryUserDepositHistory(options = {}) {
@@ -85,6 +163,52 @@ export default class Query extends Index {
 
     }
 
+    toOrderListRawList(options = {}) {
+        this.validator.validatorDate(options.start_date)
+        this.validator.validatorDate(options.end_date)
+
+        if(options.start_date >= options.end_date)
+            throw new Error('End time cannot be less than start time.');
+
+        let timestamp =  this.apis.dateNow()
+            
+        const defaultObject = {
+            start_date: null,
+            end_date: null,
+            offset: 0,
+            limit: 10
+        }
+
+        let orderListRawdata = Object.assign(
+            defaultObject, 
+            options, 
+            {
+                type: 1,
+                timestamp
+            }
+        )
+
+        return orderListRawdata
+    }
+
+    async userSignOrderList(fromAddress, rawData, signature) {
+        this.validator.validateAddress(fromAddress)
+
+        let signOptions = {
+            user_address: fromAddress,
+            raw_data: rawData,
+            signature: signature
+        }
+
+        const signOrderList = await this.client({
+            url: `/api/v1/history`,
+            params: signOptions,
+            method: 'get'
+        })
+        
+        return signOrderList.data
+    }
+
     async queryUserOrderList(options = {}) {
 
         this.validator.validatorDate(options.start_date)
@@ -129,6 +253,52 @@ export default class Query extends Index {
 
     }
     
+    toUploadedFiles(options={}){
+        this.validator.validatorDate(options.start_date)
+        this.validator.validatorDate(options.end_date)
+
+        if(options.start_date >= options.end_date)
+            throw new Error('End time cannot be less than start time.');
+
+        let timestamp =  this.apis.dateNow()
+
+        const defaultObject = {
+            start_date: null,
+            end_date: null,
+            offset: 0,
+            limit: 10,
+            is_deleted: false
+        }
+
+        const unSignUploadedFiles = Object.assign(
+            defaultObject, 
+            options, 
+            {
+                timestamp
+            }
+        )
+
+        return unSignUploadedFiles
+    }
+
+    async userSignUploadedFiles(fromAddress, rawData, signature) {
+        this.validator.validateAddress(fromAddress)
+
+        let signUploadedData = {
+            user_address: fromAddress,
+            raw_data: rawData,
+            signature: signature
+        }
+
+        const uploadedFilesList = await this.client({
+            url: `/api/v1/files`,
+            params: signUploadedData,
+            method: 'get'
+        })
+        
+        return uploadedFilesList.data
+    }
+
     async queryUserUploadedFiles(options = {}) {
 
         this.validator.validatorDate(options.start_date)

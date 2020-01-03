@@ -12,10 +12,29 @@
         <button type="button" onclick="handleClick()"> 上传 </button>
         <script src="../dist/Soter.js"></script>
         <script src="./tronWeb.js"></script>
+
         <script>
+       
             async function handleClick() {
+                var tronWeb = new TronWeb({
+                        fullHost: 'https://api.shasta.trongrid.io',
+                        // privateKey: 'c5251ad177f27a782f3e0df51cc817d4f5f7e7465241e2a724c8c4312195f163'
+                        privateKey: '07843e997dfe76f655274e14ea688ca1ba08550b93147fc0feca4ba7174868a7'
+                })
+             
+                var soter = new Soter(tronWeb)
                 let file = document.getElementById('file').files[0]
-                let addFile = await soter.add.addFile(file)
+                // let addFile = await Soter.add.addFile(file)
+
+                let unSignToAddFile = await soter.add.toAddFileRawData({
+                    request_user: tronWeb.defaultAddress.base58,
+                    signed_user: tronWeb.defaultAddress.base58,
+                })
+
+                let addSignature = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(unSignToAddFile)))
+
+                let signSignAddfile = await soter.add.signAddFile(unSignToAddFile, file, addSignature)
+                console.log(signSignAddfile)
             }
         </script>
 </body>

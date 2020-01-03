@@ -9,6 +9,32 @@ export default class Set extends Index {
         
     }
 
+    toUnsignAutopayData(autopay = true) {
+        let setTimestamp = Date.parse(new Date())
+        let UnSignAutodata = {
+            autopay,
+            timestamp: setTimestamp
+        }
+
+        return UnSignAutodata
+    }
+
+    async setSignAutopay(fromAddress, autopayRawdata, signature) {
+        let setRawdata = {
+            user_address: fromAddress,
+            raw_data: autopayRawdata,
+            signature: signature
+        }
+
+        const setAutopayResponse = await this.client({
+            url: `/api/v1/autopay`,
+            data: setRawdata,
+            method: 'post'
+        })
+        
+        return setAutopayResponse.data
+    }
+
     async setAutopay(autopay = true) {
         let setTimestamp = Date.parse(new Date())
         let setUnSigndata = {

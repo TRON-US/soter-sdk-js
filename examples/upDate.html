@@ -15,23 +15,31 @@
 
             var tronWeb = new TronWeb({
                         fullHost: 'https://api.shasta.trongrid.io',
-                        privateKey: 'c5251ad177f27a782f3e0df51cc817d4f5f7e7465241e2a724c8c4312195f163'
+                        // privateKey: 'c5251ad177f27a782f3e0df51cc817d4f5f7e7465241e2a724c8c4312195f163'
+                        privateKey: '07843e997dfe76f655274e14ea688ca1ba08550b93147fc0feca4ba7174868a7'
                 })
              
                 var soter = new Soter(tronWeb)
 
-
                 /* Update User Information
-                 *  @params: email, phone_number
-                 *  
-                */
+                 * @params: email, phone_number
+                 */
+                
                 let data = {
                     email: 'user@email.com',
                     phone_number: '15712341234',
 
                 }
-                let updateInformation = await soter.update.userInformation(data)
-                // console.log(updateInformation)
+
+                // let updateInformation = await soter.update.userInformation(data)
+                let toUnsignInforData = await soter.update.toUnsignInforData(data)
+                let infoSignature = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(toUnsignInforData)))
+                let signInforRes = await soter.update.userSignInformation( 
+                    'THq4ALz1irs8XXckpQESAPcxFLFbRpGpCv',
+                    toUnsignInforData,
+                    infoSignature
+                )
+                console.log(signInforRes)
                     
                 
         })()
