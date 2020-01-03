@@ -9,27 +9,53 @@ export default class Set extends Index {
         
     }
 
-    async setAutopay(autopay = true) {
-        let timestamp = Date.parse(new Date())
-        let data = {
+    toUnsignAutopayData(autopay = true) {
+        let setTimestamp = Date.parse(new Date())
+        let UnSignAutodata = {
             autopay,
-            timestamp
+            timestamp: setTimestamp
         }
-        let signature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(data)))
 
-        let rawdata = {
-            user_address: this.tronWeb.defaultAddress.base58 ,
-            raw_data: data,
+        return UnSignAutodata
+    }
+
+    async setSignAutopay(fromAddress, autopayRawdata, signature) {
+        let setRawdata = {
+            user_address: fromAddress,
+            raw_data: autopayRawdata,
             signature: signature
         }
 
-        const response = await this.client({
+        const setAutopayResponse = await this.client({
             url: `/api/v1/autopay`,
-            data: rawdata,
+            data: setRawdata,
             method: 'post'
         })
         
-        return response.data
+        return setAutopayResponse.data
+    }
+
+    async setAutopay(autopay = true) {
+        let setTimestamp = Date.parse(new Date())
+        let setUnSigndata = {
+            autopay,
+            timestamp: setTimestamp
+        }
+        let setSignature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(setUnSigndata)))
+
+        let setRawdata = {
+            user_address: this.tronWeb.defaultAddress.base58 ,
+            raw_data: setUnSigndata,
+            signature: setSignature
+        }
+
+        const setResponse = await this.client({
+            url: `/api/v1/autopay`,
+            data: setRawdata,
+            method: 'post'
+        })
+        
+        return setResponse.data
     }
 
  

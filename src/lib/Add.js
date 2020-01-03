@@ -7,32 +7,63 @@ export default class Add extends Index {
         this.tronWeb = this.soter.tronWeb
     }
 
-    async addFile(files) {
+    toAddFileRawData(options = {}) {
+        let addTimestamp = Date.parse(new Date())
         
-        let timestamp = Date.parse(new Date())
-        let formData = new FormData()
-        let data = {
-            request_user: this.tronWeb.defaultAddress.base58,
-            signed_user: this.tronWeb.defaultAddress.base58,
-            request_id: this.apis.uuidv4(),
-            timestamp
-        }
-        console.log(data)
+        this.validator.validatorDate(options.request_user)
+        this.validator.validatorDate(options.signed_user)
 
-        let signature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(data)))
+        const unSignAddFileRawData = Object.assign(
+            options, 
+            {
+                request_id: this.apis.uuidv4(),
+                timestamp: addTimestamp
+            }
+        )
 
-        formData.append("raw_data", JSON.stringify(data));
-        formData.append("file", files);
-        formData.append("signature", signature)
+        return unSignAddFileRawData
+    }
 
-        console.log(formData)
-        const response = await this.client({
+    async signAddFile(unSignData, files, addSignature){
+        let addFormData = new FormData()
+        addFormData.append("raw_data", JSON.stringify(unSignData));
+        addFormData.append("file", files);
+        addFormData.append("signature", addSignature)
+
+        const addSignResponse = await this.client({
             url: `/api/v1/add`,
-            data: formData,
+            data: addFormData,
             method: 'post'
         })
         
-        return response.data
+        return addSignResponse.data
+    }
+
+    async addFile(files) {
+        
+        let addTimestamp = Date.parse(new Date())
+        let addFormData = new FormData()
+        
+        let addUnSignData = {
+            request_user: this.tronWeb.defaultAddress.base58,
+            signed_user: this.tronWeb.defaultAddress.base58,
+            request_id: this.apis.uuidv4(),
+            timestamp: addTimestamp
+        }
+
+        let addSignature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(addUnSignData)))
+
+        addFormData.append("raw_data", JSON.stringify(addUnSignData));
+        addFormData.append("file", files);
+        addFormData.append("signature", addSignature)
+
+        const addResponse = await this.client({
+            url: `/api/v1/add`,
+            data: addFormData,
+            method: 'post'
+        })
+        
+        return addResponse.data
     }
 
  
