@@ -7,7 +7,7 @@ export default class Add extends Index {
         this.tronWeb = this.soter.tronWeb
     }
 
-    toAddFileRawData(options = {}) {
+    signAddFileRawData(options = {}) {
         let addTimestamp = Date.parse(new Date())
         
         this.validator.validatorDate(options.request_user)

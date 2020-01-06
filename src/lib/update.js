@@ -8,7 +8,7 @@ export default class Update extends Index {
         this.tronWeb = this.soter.tronWeb
     }
 
-    toUnsignInforData(options = {}){
+    userSignInformationRawData(options = {}){
         let timestamp =  this.apis.dateNow()
 
         const unSignInforData = Object.assign(
