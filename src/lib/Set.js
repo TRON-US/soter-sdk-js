@@ -5,11 +5,10 @@ export default class Set extends Index {
     constructor(soter) {
         super(soter);
         this.soter = soter
-        this.tronWeb = this.soter.tronWeb
-        
+        this.tronWeb = this.soter.tronWeb   
     }
 
-    toUnsignAutopayData(autopay = true) {
+    setSignAutopayRawData(autopay = true) {
         let setTimestamp = Date.parse(new Date())
         let UnSignAutodata = {
             autopay,

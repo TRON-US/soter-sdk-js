@@ -32,13 +32,12 @@
                 // let userBlance = await soter.query.userBalance()
                 // console.log(userBlance)
 
-
                 /* Query userSignBalance function
                  *  step1: toHexRawData  params: address 
                  *  step2: tronweb sign 
                  *  step3: userSignBalance(address, userRawData, signature)
                  */
-                // let userRawData = await soter.query.toHexRawData('THq4ALz1irs8XXckpQESAPcxFLFbRpGpCv')
+                // let userRawData = await soter.query.userSignBalanceRawData('THq4ALz1irs8XXckpQESAPcxFLFbRpGpCv')
                 // let signature = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(userRawData)))
 
                 // let userSignBalance = await soter.query.userSignBalance(
@@ -65,7 +64,8 @@
                 // console.log(historyQuery)
 
 
-                // let userRawData = await soter.query.toHistoryRawData({
+                // userSignHistoryRawData
+                // let userRawData = await soter.query.signDepositHistoryRawData({
                 //     start_date: 1572348598200,
                 //     end_date: 1577434880000,
                 //     offset: 0,
@@ -74,7 +74,7 @@
 
                 // let signature = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(userRawData)))
 
-                // let userSignHistory = await soter.query.userSignHistory(
+                // let userSignHistory = await soter.query.signDepositHistory(
                 //         'THq4ALz1irs8XXckpQESAPcxFLFbRpGpCv',
                 //         userRawData,
                 //         signature
@@ -93,10 +93,10 @@
                 //     limit: 10
                 // }
 
-                // let UserOrderList = await soter.query.queryUserOrderList(data)
+                // let UserOrderList = await soter.query.userOrderList(data)
                 // console.log(UserOrderList)
 
-                //  let userRawData = await soter.query.toOrderListRawList({
+                //  let userRawData = await soter.query.userSignOrderListRawData({
                 //     start_date: 1572348598200,
                 //     end_date: 1577434880000,
                 //     offset: 0,
@@ -128,10 +128,10 @@
                 // }
 
               
-                // let queryUserUploadedFiles = await soter.query.queryUserUploadedFiles(raw_data);
+                // let queryUserUploadedFiles = await soter.query.userUploaded(raw_data);
                 // console.log(queryUserUploadedFiles)
 
-                  let userRawData = await soter.query.toUploadedFiles({
+                  let userRawData = await soter.query.userSignUploadedRawData({
                         start_date: 1577774585986,
                         end_date: 1577774612991,
                         offset:0,
@@ -141,7 +141,7 @@
 
                 let signature = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(userRawData)))
 
-                let signUploadedFiles = await soter.query.userSignUploadedFiles(
+                let signUploadedFiles = await soter.query.userSignUploaded(
                     'THq4ALz1irs8XXckpQESAPcxFLFbRpGpCv',
                     userRawData,
                     signature

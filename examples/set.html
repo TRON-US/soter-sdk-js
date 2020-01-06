@@ -27,7 +27,7 @@
                      */
                     let autopay = await soter.set.setAutopay(false)
                     // console.log(autopay)
-                    let signAutopaydata = await soter.set.toUnsignAutopayData(false)
+                    let signAutopaydata = await soter.set.setSignAutopayRawData(false)
 
                     let setSignature = await tronWeb.trx.sign( tronWeb.toHex(JSON.stringify(signAutopaydata)))
                     let signAutopay = await soter.set.setSignAutopay(

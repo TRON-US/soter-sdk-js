@@ -10,7 +10,7 @@ export default class Query extends Index {
 
     }
 
-    toBalanceRawData(fromAddress) {
+    userSignBalanceRawData(fromAddress) {
         this.validator.validateAddress(fromAddress)
 
         let timestamp =  this.apis.dateNow()
@@ -72,7 +72,7 @@ export default class Query extends Index {
         return response.data
     }
 
-    toHistoryRawData(options = {}) {
+    signDepositHistoryRawData(options = {}) {
 
         this.validator.validatorDate(options.start_date)
         this.validator.validatorDate(options.end_date)
@@ -101,7 +101,7 @@ export default class Query extends Index {
         return historyRawdata
     }
 
-    async userSignHistory(fromAddress, rawData, signature) {
+    async signDepositHistory(fromAddress, rawData, signature) {
         this.validator.validateAddress(fromAddress)
 
         let signOptions = {
@@ -163,7 +163,7 @@ export default class Query extends Index {
 
     }
 
-    toOrderListRawList(options = {}) {
+    userSignOrderListRawData(options = {}) {
         this.validator.validatorDate(options.start_date)
         this.validator.validatorDate(options.end_date)
 
@@ -209,7 +209,7 @@ export default class Query extends Index {
         return signOrderList.data
     }
 
-    async queryUserOrderList(options = {}) {
+    async userOrderList(options = {}) {
 
         this.validator.validatorDate(options.start_date)
         this.validator.validatorDate(options.end_date)
@@ -253,7 +253,7 @@ export default class Query extends Index {
 
     }
     
-    toUploadedFiles(options={}){
+    userSignUploadedRawData(options={}){
         this.validator.validatorDate(options.start_date)
         this.validator.validatorDate(options.end_date)
 
@@ -281,7 +281,7 @@ export default class Query extends Index {
         return unSignUploadedFiles
     }
 
-    async userSignUploadedFiles(fromAddress, rawData, signature) {
+    async userSignUploaded(fromAddress, rawData, signature) {
         this.validator.validateAddress(fromAddress)
 
         let signUploadedData = {
@@ -299,7 +299,7 @@ export default class Query extends Index {
         return uploadedFilesList.data
     }
 
-    async queryUserUploadedFiles(options = {}) {
+    async userUploaded(options = {}) {
 
         this.validator.validatorDate(options.start_date)
         this.validator.validatorDate(options.end_date)
