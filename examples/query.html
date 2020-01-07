@@ -29,8 +29,8 @@
                  *  @params: userBalance
                  *  userBalance: default(from address) | new address
                  */
-                // let userBlance = await soter.query.userBalance()
-                // console.log(userBlance)
+                let userBlance = await soter.query.userBalance()
+                console.log(userBlance)
 
                 /* Query userSignBalance function
                  *  step1: toHexRawData  params: address 
@@ -131,23 +131,23 @@
                 // let queryUserUploadedFiles = await soter.query.userUploaded(raw_data);
                 // console.log(queryUserUploadedFiles)
 
-                  let userRawData = await soter.query.userSignUploadedRawData({
-                        start_date: 1577774585986,
-                        end_date: 1577774612991,
-                        offset:0,
-                        limit: 10,
-                        is_deleted: false
-                })
+                //   let userRawData = await soter.query.userSignUploadedRawData({
+                //         start_date: 1577774585986,
+                //         end_date: 1577774612991,
+                //         offset:0,
+                //         limit: 10,
+                //         is_deleted: false
+                // })
 
-                let signature = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(userRawData)))
+                // let signature = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(userRawData)))
 
-                let signUploadedFiles = await soter.query.userSignUploaded(
-                    'THq4ALz1irs8XXckpQESAPcxFLFbRpGpCv',
-                    userRawData,
-                    signature
-                );
+                // let signUploadedFiles = await soter.query.userSignUploaded(
+                //     'THq4ALz1irs8XXckpQESAPcxFLFbRpGpCv',
+                //     userRawData,
+                //     signature
+                // );
 
-                console.log(signUploadedFiles)
+                // console.log(signUploadedFiles)
         
         })()
     </script>
