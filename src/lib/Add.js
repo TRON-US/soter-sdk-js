@@ -1,4 +1,5 @@
 import Index from './index';
+var FormData = require('form-data');
 export default class Add extends Index {
 
     constructor(soter) {
@@ -40,7 +41,6 @@ export default class Add extends Index {
     }
 
     async addFile(files) {
-        
         let addTimestamp = Date.parse(new Date())
         let addFormData = new FormData()
         
