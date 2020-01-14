@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Soter - query-Sign</title>
+</head>
+<body>
+
+    <script src="../dist/Soter.js"></script>
+    <script src="./tronWeb.js"></script>
+    <script>
+      
+        (async function(){
+
+            var tronWeb = new TronWeb({
+                        fullHost: 'https://api.shasta.trongrid.io',
+                        privateKey: '07843e997dfe76f655274e14ea688ca1ba08550b93147fc0feca4ba7174868a7'
+                })
+             
+                var soter = new Soter(tronWeb)
+                let timestamp = Date.parse(new Date())
+
+
+                /* Query userSignBalance function
+                 *  step1: toHexRawData  params: address 
+                 *  step2: tronweb sign 
+                 *  step3: userSignBalance(address, userRawData, signature)
+                 */
+                let userRawData = await soter.query.userSignBalanceRawData('THq4ALz1irs8XXckpQESAPcxFLFbRpGpCv')
+                let signature = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(userRawData)))
+
+                let userSignBalance = await soter.query.userSignBalance(
+                        'THq4ALz1irs8XXckpQESAPcxFLFbRpGpCv',
+                        userRawData,
+                        signature
+                    )
+                     
+                console.log(userSignBalance)
+
+
+                /* Query User Deposit History
+                 *  @params: start_date, end_date, offset <type: number, default: 0 >, limit<type: number, default: 0>
+                 *  
+                */
+              
+                // userSignHistoryRawData
+                let userRawData = await soter.query.signDepositHistoryRawData({
+                    start_date: 1572348598200,
+                    end_date: 1577434880000,
+                    offset: 0,
+                    limit: 10
+                })
+
+                let signature = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(userRawData)))
+
+                let userSignHistory = await soter.query.signDepositHistory(
+                        'THq4ALz1irs8XXckpQESAPcxFLFbRpGpCv',
+                        userRawData,
+                        signature
+                    )
+
+                console.log(userSignHistory)
+
+                /* Query User Order List
+                 *  @params: start_date, end_date, offset <type: number,default: 0 >, limit<type: number,default: 0>
+                 *  
+                */
+            
+
+                 let userRawData = await soter.query.userSignOrderListRawData({
+                    start_date: 1572348598200,
+                    end_date: 1577434880000,
+                    offset: 0,
+                    limit: 10
+                })
+
+                let signature = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(userRawData)))
+
+                let userSignOrderList = await soter.query.userSignOrderList(
+                        'THq4ALz1irs8XXckpQESAPcxFLFbRpGpCv',
+                        userRawData,
+                        signature
+                    )
+
+                console.log(userSignOrderList)
+
+
+
+                /* Query User Uploaded Files
+                 *  @params: start_date, end_date, offset <type: number, default: 0 >, limit<type: number, default: 0>, is_deleted <type: Boolean,default: false>,
+                 *  
+                */
+                
+
+                  let userRawData = await soter.query.userSignUploadedRawData({
+                        start_date: 1577774585986,
+                        end_date: 1577774612991,
+                        offset:0,
+                        limit: 10,
+                        is_deleted: false
+                })
+
+                let signature = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(userRawData)))
+
+                let signUploadedFiles = await soter.query.userSignUploaded(
+                    'THq4ALz1irs8XXckpQESAPcxFLFbRpGpCv',
+                    userRawData,
+                    signature
+                );
+
+                console.log(signUploadedFiles)
+        
+        })()
+    </script>
+</body>
+</html>
