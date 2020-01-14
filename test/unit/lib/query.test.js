@@ -154,7 +154,7 @@ describe('#Query functional unit test', function () {
     // userUploaded
     describe('#Query Uploaded', function() {
         this.timeout(10000);
-        
+
         it('userUploaded', async function() {
 
             let res = await soter.query.userUploaded({

@@ -49,7 +49,6 @@ export default class Update extends Index {
             }
         )
 
-
         let signature = await this.tronWeb.trx.sign( this.tronWeb.toHex(JSON.stringify(unSigndata)))
 
         let rawdata = {
