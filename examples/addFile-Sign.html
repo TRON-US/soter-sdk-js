@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Soter-addFile</title>
+    <title>Soter - addFile-sign</title>
 </head>
 <body>
         <div class="content" id="hash">[soter hash]</div>
@@ -26,9 +26,16 @@
                 var soter = new Soter(tronWeb)
                 let file = document.getElementById('file').files[0]
                
-                let addFile = await soter.add.addFile(file)
-                console.log(addFile)
-              
+
+                let unSignToAddFile = await soter.add.signAddFileRawData({
+                    request_user: tronWeb.defaultAddress.base58,
+                    signed_user: tronWeb.defaultAddress.base58,
+                })
+
+                let addSignature = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(unSignToAddFile)))
+
+                let signSignAddfile = await soter.add.signAddFile(unSignToAddFile, file, addSignature)
+                console.log(signSignAddfile)
             }
         </script>
 </body>
