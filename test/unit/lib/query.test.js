@@ -52,7 +52,7 @@ describe('#Query functional unit test', function () {
 
         it('depositHistory', async function () {
 
-            let res = await soter.query.queryUserDepositHistory({
+            let res = await soter.query.depositHistory({
                 start_date: 1572348598200,
                 end_date: 1577434880000,
                 offset: 0,

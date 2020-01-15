@@ -119,7 +119,7 @@ export default class Query extends Index {
         return signHistory.data
     }
 
-    async queryUserDepositHistory(options = {}) {
+    async depositHistory(options = {}) {
 
         this.validator.validatorDate(options.start_date)
         this.validator.validatorDate(options.end_date)
