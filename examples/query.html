@@ -23,7 +23,6 @@
                 let timestamp = Date.parse(new Date())
 
 
-
                 /* Query userBalance function
                  *  @params: userBalance
                  *  userBalance: default(from address) | new address
@@ -32,19 +31,18 @@
                 console.log(userBlance)
 
 
-
                 /* Query User Deposit History
                  *  @params: start_date, end_date, offset <type: number, default: 0 >, limit<type: number, default: 0>
                  *  
                 */
-                let data = {
+                let depositHistoryData = {
                     start_date: 1572348598200,
                     end_date: 1577434880000,
                     offset: 0,
                     limit: 10
                 }
 
-                let historyQuery = await soter.query.queryUserDepositHistory(data)
+                let historyQuery = await soter.query.depositHistory(depositHistoryData)
                 console.log(historyQuery)
 
 
@@ -52,14 +50,14 @@
                  *  @params: start_date, end_date, offset <type: number,default: 0 >, limit<type: number,default: 0>
                  *  
                 */
-                let data = {
+                let userOrderListData = {
                     start_date: 1572348598200,
                     end_date: 1577434880000,
                     offset: 0,
                     limit: 10
                 }
 
-                let UserOrderList = await soter.query.userOrderList(data)
+                let UserOrderList = await soter.query.userOrderList(userOrderListData)
                 console.log(UserOrderList)
 
                 /* Query User Uploaded Files

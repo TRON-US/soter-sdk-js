@@ -1,7 +1,7 @@
 const axios = require('axios');
 
 const axiosInstance = axios.create({
-  baseURL: 'http://65.52.163.204:8101/',
+  baseURL: 'https://sandbox.btfssoter.io',
   /* other custom settings */
 });
 
