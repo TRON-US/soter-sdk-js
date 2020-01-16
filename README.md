@@ -23,7 +23,7 @@ $ npm install soter
 
 The code published to npm that gets loaded on require is in fact an ES5 transpiled version with the right shims added. This means that you can require it and use with your favorite bundler without having to adjust asset management process.
 
-```js
+```javascript
 var Soter = require('soter')
 ```
 
@@ -61,59 +61,66 @@ The target audience for BTFS Soter are developers familiar with HTTP APIs and ne
 ## Query [examples](https://github.com/TRON-US/soter-sdk-js/blob/master/examples/query.html)
 
 
+```javascript
+soter.query.userBalance()
 
-### `soter.query.userBalance()`
+soter.query.userSignBalanceRawData()
 
-### `soter.query.userSignBalanceRawData()`
-
-### `soter.query.userSignBalance()`
-
-### `soter.query.depositHistory()`
-
-### `soter.query.signDepositHistoryRawData()`
-
-### `soter.query.signDepositHistory()`
-
-### `soter.query.userOrderList()`
-
-### `soter.query.userSignOrderListRawData()`
-
-### `soter.query.userSignOrderList()`
+soter.query.userSignBalance()
 
 
-### `soter.query.userUploaded()`
+soter.query.depositHistory()
 
-### `soter.query.userSignUploadedRawData()`
+soter.query.signDepositHistoryRawData()
 
-### `soter.query.userSignUploaded()`
+soter.query.signDepositHistory()
+
+
+soter.query.userOrderList()
+
+soter.query.userSignOrderListRawData()
+
+soter.query.userSignOrderList()
+
+
+soter.query.userUploaded()
+
+soter.query.userSignUploadedRawData()
+
+soter.query.userSignUploaded()
+
+```
+
 
 ## Set [examples](https://github.com/TRON-US/soter-sdk-js/blob/master/examples/set.html)
 
-### `soter.set.setAutopay()`
+```javascript
+soter.set.setAutopay()
 
-### `soter.set.setSignAutopayRawData()`
+soter.set.setSignAutopayRawData()
 
-### `soter.set.setSignAutopay()`
-
+soter.set.setSignAutopay()
+```
 
 ## Update [examples](https://github.com/TRON-US/soter-sdk-js/blob/master/examples/update.html)
 
-
+```javascript
 ### `soter.update.userInformation(path)`
 
 ### `soter.update.userSignInformationRawData()`
 
 ### `soter.update.userSignInformation()`
-
+```
 
 ## Addfiles [examples](https://github.com/TRON-US/soter-sdk-js/blob/master/examples/addFile.html)
 
+```javascript
 ### `soter.add.addFile()`
 
 ### `soter.add.signAddFileRawData()`
 
 ### `soter.add.signAddFile()`
-
+```
 
 # License
 
