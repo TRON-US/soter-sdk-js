@@ -62,32 +62,32 @@ The target audience for BTFS Soter are developers familiar with HTTP APIs and ne
 
 
 ```javascript
-soter.query.userBalance()
+await soter.query.userBalance()
 
-soter.query.userSignBalanceRawData()
+await soter.query.userSignBalanceRawData()
 
-soter.query.userSignBalance()
-
-
-soter.query.depositHistory()
-
-soter.query.signDepositHistoryRawData()
-
-soter.query.signDepositHistory()
+await soter.query.userSignBalance()
 
 
-soter.query.userOrderList()
+await soter.query.depositHistory()
 
-soter.query.userSignOrderListRawData()
+await soter.query.signDepositHistoryRawData()
 
-soter.query.userSignOrderList()
+await soter.query.signDepositHistory()
 
 
-soter.query.userUploaded()
+await soter.query.userOrderList()
 
-soter.query.userSignUploadedRawData()
+await soter.query.userSignOrderListRawData()
 
-soter.query.userSignUploaded()
+await soter.query.userSignOrderList()
+
+
+await soter.query.userUploaded()
+
+await soter.query.userSignUploadedRawData()
+
+await soter.query.userSignUploaded()
 
 ```
 
@@ -95,31 +95,31 @@ soter.query.userSignUploaded()
 ## Set [examples](https://github.com/TRON-US/soter-sdk-js/blob/master/examples/set.html)
 
 ```javascript
-soter.set.setAutopay()
+await soter.set.setAutopay()
 
-soter.set.setSignAutopayRawData()
+await soter.set.setSignAutopayRawData()
 
-soter.set.setSignAutopay()
+await soter.set.setSignAutopay()
 ```
 
 ## Update [examples](https://github.com/TRON-US/soter-sdk-js/blob/master/examples/update.html)
 
 ```javascript
-### `soter.update.userInformation(path)`
+await soter.update.userInformation(path)
 
-### `soter.update.userSignInformationRawData()`
+await soter.update.userSignInformationRawData()
 
-### `soter.update.userSignInformation()`
+await soter.update.userSignInformation()
 ```
 
 ## Addfiles [examples](https://github.com/TRON-US/soter-sdk-js/blob/master/examples/addFile.html)
 
 ```javascript
-### `soter.add.addFile()`
+await soter.add.addFile()
 
-### `soter.add.signAddFileRawData()`
+await soter.add.signAddFileRawData()
 
-### `soter.add.signAddFile()`
+await soter.add.signAddFile()
 ```
 
 # License
