@@ -1,7 +1,5 @@
 # soter-sdk-js
 
-====
-
 <p>
   <a href=""><img src="https://img.shields.io/badge/npm-%3E%3D6.0.0-orange.svg?style=flat" /></a>
   <a href=""><img src="https://img.shields.io/badge/Node.js-%3E%3D10.0.0-orange.svg?style=flat" /></a>
@@ -23,7 +21,8 @@ $ npm install soter
 
 The code published to npm that gets loaded on require is in fact an ES5 transpiled version with the right shims added. This means that you can require it and use with your favorite bundler without having to adjust asset management process.
 
-```js
+```javascript
+
 var Soter = require('soter')
 ```
 
@@ -60,60 +59,66 @@ The target audience for BTFS Soter are developers familiar with HTTP APIs and ne
 
 ## Query [examples](https://github.com/TRON-US/soter-sdk-js/blob/master/examples/query.html)
 
+```javascript
+await soter.query.userBalance()
+
+await soter.query.userSignBalanceRawData()
+
+await soter.query.userSignBalance()
 
 
-### `soter.query.userBalance()`
+await soter.query.depositHistory()
 
-### `soter.query.userSignBalanceRawData()`
+await soter.query.signDepositHistoryRawData()
 
-### `soter.query.userSignBalance()`
-
-### `soter.query.depositHistory()`
-
-### `soter.query.signDepositHistoryRawData()`
-
-### `soter.query.signDepositHistory()`
-
-### `soter.query.userOrderList()`
-
-### `soter.query.userSignOrderListRawData()`
-
-### `soter.query.userSignOrderList()`
+await soter.query.signDepositHistory()
 
 
-### `soter.query.userUploaded()`
+await soter.query.userOrderList()
 
-### `soter.query.userSignUploadedRawData()`
+await soter.query.userSignOrderListRawData()
 
-### `soter.query.userSignUploaded()`
+await soter.query.userSignOrderList()
+
+
+await soter.query.userUploaded()
+
+await soter.query.userSignUploadedRawData()
+
+await soter.query.userSignUploaded()
+
+```
+
 
 ## Set [examples](https://github.com/TRON-US/soter-sdk-js/blob/master/examples/set.html)
 
-### `soter.set.setAutopay()`
+```javascript
+await soter.set.setAutopay()
 
-### `soter.set.setSignAutopayRawData()`
+await soter.set.setSignAutopayRawData()
 
-### `soter.set.setSignAutopay()`
-
+await soter.set.setSignAutopay()
+```
 
 ## Update [examples](https://github.com/TRON-US/soter-sdk-js/blob/master/examples/update.html)
 
+```javascript
+await soter.update.userInformation(path)
 
-### `soter.update.userInformation(path)`
+await soter.update.userSignInformationRawData()
 
-### `soter.update.userSignInformationRawData()`
-
-### `soter.update.userSignInformation()`
-
+await soter.update.userSignInformation()
+```
 
 ## Addfiles [examples](https://github.com/TRON-US/soter-sdk-js/blob/master/examples/addFile.html)
 
-### `soter.add.addFile()`
+```javascript
+await soter.add.addFile()
 
-### `soter.add.signAddFileRawData()`
+await soter.add.signAddFileRawData()
 
-### `soter.add.signAddFile()`
-
+await soter.add.signAddFile()
+```
 
 # License
 
