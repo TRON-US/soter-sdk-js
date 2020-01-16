@@ -22,6 +22,7 @@ $ npm install soter
 The code published to npm that gets loaded on require is in fact an ES5 transpiled version with the right shims added. This means that you can require it and use with your favorite bundler without having to adjust asset management process.
 
 ```javascript
+
 var Soter = require('soter')
 ```
 
@@ -57,7 +58,6 @@ The target audience for BTFS Soter are developers familiar with HTTP APIs and ne
 
 
 ## Query [examples](https://github.com/TRON-US/soter-sdk-js/blob/master/examples/query.html)
-
 
 ```javascript
 await soter.query.userBalance()
