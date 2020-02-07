@@ -47,13 +47,13 @@ describe('#Add unit test', function () {
         addFormData.append("raw_data", JSON.stringify(addUnSignData));
         addFormData.append("file", files);
         addFormData.append("signature", addSignature)
-        const axiosInstance = axios.create({
-            baseURL: 'http://65.52.163.204:8101/',
-            /* other custom settings */
-          });
+        // const axiosInstance = axios.create({
+        //     baseURL: 'http://65.52.163.204:8101/',
+        //     /* other custom settings */
+        //   });
           try{
-            const addSignResponse = axiosInstance({
-                url: `/api/v1/add`,
+            const addSignResponse = axios({
+                url: `https://sandbox.btfssoter.io/api/v1/add`,
                 data: addFormData,
                 method: 'post'
               })

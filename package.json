@@ -37,6 +37,7 @@
     "interfake": "^1.19.0",
     "it-to-stream": "^0.1.1",
     "mocha": "^7.0.0",
+    "request": "^2.88.0",
     "tronweb": "^2.9.0"
   },
   "devDependencies": {
