@@ -1,6 +1,5 @@
 import Index from './index';
 
-
 export default class Add extends Index {
 
     constructor(soter) {
@@ -68,5 +67,4 @@ export default class Add extends Index {
         return addResponse.data
     }
 
- 
 }

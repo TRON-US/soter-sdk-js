@@ -1,0 +1,43 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Soter - query</title>
+</head>
+<body>
+
+    <script src="../dist/Soter.js"></script>
+    <script src="./tronWeb.js"></script>
+    <script>
+      
+        (async function(){
+
+            var tronWeb = new TronWeb({
+                        fullHost: 'https://api.shasta.trongrid.io',
+                        privateKey: 'xx'
+                })
+             
+                var soter = new Soter(tronWeb)
+                let timestamp = Date.parse(new Date())
+
+
+                /* Query User Deposit History
+                 *  @params: start_date, end_date, offset <type: number, default: 0 >, limit<type: number, default: 0>
+                 *  
+                */
+                let depositHistoryData = {
+                    start_date: 1572348598200,
+                    end_date: 1577434880000,
+                    offset: 0,
+                    limit: 10
+                }
+
+                let historyQuery = await soter.query.depositHistory(depositHistoryData)
+                console.log(historyQuery)
+
+        })()
+    </script>
+</body>
+</html>

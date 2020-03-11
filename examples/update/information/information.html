@@ -4,7 +4,7 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Soter - update-Sign</title>
+    <title>Soter - update</title>
 </head>
 <body>
     <script src="../dist/Soter.js"></script>
@@ -15,7 +15,7 @@
 
             var tronWeb = new TronWeb({
                         fullHost: 'https://api.shasta.trongrid.io',
-                        privateKey: '07843e997dfe76f655274e14ea688ca1ba08550b93147fc0feca4ba7174868a7'
+                        privateKey: 'xx'
                 })
              
                 var soter = new Soter(tronWeb)
@@ -30,17 +30,7 @@
 
                 }
 
-                let toUnsignInforData = await soter.update.userSignInformationRawData(data)
-
-                let infoSignature = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(toUnsignInforData)))
-                
-                let signInforRes = await soter.update.userSignInformation( 
-                    'THq4ALz1irs8XXckpQESAPcxFLFbRpGpCv',
-                    toUnsignInforData,
-                    infoSignature
-                )
-                console.log(signInforRes)
-                    
+                let updateInformation = await soter.update.userInformation(data)    
                 
         })()
 

@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Soter - query</title>
+</head>
+<body>
+
+    <script src="../dist/Soter.js"></script>
+    <script src="./tronWeb.js"></script>
+    <script>
+      
+        (async function(){
+
+            var tronWeb = new TronWeb({
+                        fullHost: 'https://api.shasta.trongrid.io',
+                        privateKey: 'xx'
+                })
+             
+                var soter = new Soter(tronWeb)
+                let timestamp = Date.parse(new Date())
+
+
+                /* Query User Uploaded Files
+                 *  @params: start_date, end_date, offset <type: number, default: 0 >, limit<type: number, default: 0>, is_deleted <type: Boolean,default: false>,
+                 *  
+                */
+                let raw_data =  {
+                    start_date: 1577774585986,
+                    end_date: 1577774612991,
+                    offset:0,
+                    limit: 10,
+                    is_deleted: false
+                }
+
+              
+                let queryUserUploadedFiles = await soter.query.userUploaded(raw_data);
+                console.log(queryUserUploadedFiles)
+
+        })()
+    </script>
+</body>
+</html>
