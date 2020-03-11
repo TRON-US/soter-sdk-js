@@ -16,7 +16,6 @@ export default class addStream extends Index {
 
         let addTimestamp = Date.parse(new Date())
         const data = new NodeFormData();
-        const url = `https://sandbox.btfssoter.io/api/v1/add`;
 
         if (!(files instanceof stream.Readable)) {
             reject(new Error('readStream is not a readable stream'));
@@ -35,17 +34,16 @@ export default class addStream extends Index {
         data.append('file', files);
         data.append("signature", addSignature);
 
-        const addStream = await axios.post(
-            url,
-            data,
-            {
-                withCredentials: true,
-                maxContentLength: 'Infinity', //this is needed to prevent axios from erroring out with large files
-                headers: {
-                    'Content-type': `multipart/form-data; boundary= ${data._boundary}`
-                }
-            }
-        )
+        const addStream = await this.client({
+            url: `/api/v1/add`,
+            data: data,
+            withCredentials: true,
+            maxContentLength: 'Infinity',
+            headers: {
+                'Content-type': `multipart/form-data; boundary= ${data._boundary}`
+            },
+            method: 'post'
+        })
 
        return addStream.data
     }
