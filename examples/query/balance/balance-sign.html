@@ -1,0 +1,45 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Soter - query-Sign</title>
+</head>
+<body>
+
+    <script src="../dist/Soter.js"></script>
+    <script src="./tronWeb.js"></script>
+    <script>
+      
+        (async function(){
+
+            var tronWeb = new TronWeb({
+                        fullHost: 'https://api.shasta.trongrid.io',
+                        privateKey: ''
+                })
+             
+                var soter = new Soter(tronWeb)
+                let timestamp = Date.parse(new Date())
+
+
+                /* Query userSignBalance function
+                 *  step1: toHexRawData  params: address 
+                 *  step2: tronweb sign 
+                 *  step3: userSignBalance(address, userRawData, signature)
+                 */
+                let userRawData = await soter.query.userSignBalanceRawData('THq4ALz1irs8XXckpQESAPcxFLFbRpGpCv')
+                let signature = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(userRawData)))
+
+                let userSignBalance = await soter.query.userSignBalance(
+                        'THq4ALz1irs8XXckpQESAPcxFLFbRpGpCv',
+                        userRawData,
+                        signature
+                    )
+                     
+                console.log(userSignBalance)
+        
+        })()
+    </script>
+</body>
+</html>

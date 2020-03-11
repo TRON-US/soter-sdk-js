@@ -4,9 +4,10 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta http-equiv="X-UA-Compatible" content="ie=edge">
-    <title>Soter - update</title>
+    <title>Soter - query</title>
 </head>
 <body>
+
     <script src="../dist/Soter.js"></script>
     <script src="./tronWeb.js"></script>
     <script>
@@ -15,25 +16,22 @@
 
             var tronWeb = new TronWeb({
                         fullHost: 'https://api.shasta.trongrid.io',
-                        privateKey: '07843e997dfe76f655274e14ea688ca1ba08550b93147fc0feca4ba7174868a7'
+                        privateKey: ''
                 })
              
                 var soter = new Soter(tronWeb)
+                let timestamp = Date.parse(new Date())
 
-                /* Update User Information
-                 * @params: email, phone_number
+
+                /* Query userBalance function
+                 *  @params: userBalance
+                 *  userBalance: default(from address) | new address
                  */
+                let userBlance = await soter.query.userBalance()
+                console.log(userBlance)
 
-                let data = {
-                    email: 'user@email.com',
-                    phone_number: '15712341234',
 
-                }
-
-                let updateInformation = await soter.update.userInformation(data)    
-                
         })()
-
     </script>
 </body>
 </html>

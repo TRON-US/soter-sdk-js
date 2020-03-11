@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>Soter - query-Sign</title>
+</head>
+<body>
+
+    <script src="../dist/Soter.js"></script>
+    <script src="./tronWeb.js"></script>
+    <script>
+      
+        (async function(){
+
+            var tronWeb = new TronWeb({
+                        fullHost: 'https://api.shasta.trongrid.io',
+                        privateKey: 'xx'
+                })
+             
+                var soter = new Soter(tronWeb)
+                let timestamp = Date.parse(new Date())
+
+
+                /* Query User Order List
+                 *  @params: start_date, end_date, offset <type: number,default: 0 >, limit<type: number,default: 0>
+                 *  
+                */
+            
+
+                 let userRawData = await soter.query.userSignOrderListRawData({
+                    start_date: 1572348598200,
+                    end_date: 1577434880000,
+                    offset: 0,
+                    limit: 10
+                })
+
+                let signature = await tronWeb.trx.sign(tronWeb.toHex(JSON.stringify(userRawData)))
+
+                let userSignOrderList = await soter.query.userSignOrderList(
+                        'THq4ALz1irs8XXckpQESAPcxFLFbRpGpCv',
+                        userRawData,
+                        signature
+                    )
+
+                console.log(userSignOrderList)
+
+        })()
+    </script>
+</body>
+</html>

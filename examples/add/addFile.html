@@ -7,20 +7,19 @@
     <title>Soter-addFile</title>
 </head>
 <body>
-        <div class="content" id="hash">[soter hash]</div>
-        <div class="content" id="content">[soter content]</div>
+
         <input type="file" id="file" >
         <input type="hidden" id="custid" >
         <button type="button" onclick="handleClick()"> 上传 </button>
-        <script src="../dist/Soter.js"></script>
-        <script src="./tronWeb.js"></script>
+        <script src="../../dist/Soter.js"></script>
+        <script src="../tronWeb.js"></script>
 
         <script>
        
             async function handleClick() {
                 var tronWeb = new TronWeb({
                         fullHost: 'https://api.shasta.trongrid.io',
-                        privateKey: '07843e997dfe76f655274e14ea688ca1ba08550b93147fc0feca4ba7174868a7'
+                        privateKey: ''
                 })
              
                 var soter = new Soter(tronWeb)

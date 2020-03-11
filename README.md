@@ -14,7 +14,7 @@
 ### In Node.js through npm
 
 ```bash
-$ npm install soter
+$ npm install soter-sdk
 ```
 
 ### Browser: Browserify, Webpack, other bundlers
@@ -23,7 +23,7 @@ The code published to npm that gets loaded on require is in fact an ES5 transpil
 
 ```javascript
 
-var Soter = require('soter')
+var Soter = require('soter-sdk')
 ```
 
 
@@ -38,7 +38,7 @@ Loading this module through a script tag will make the ```Soter``` obj available
 
 # Usage
 ```javascript
- const Soter = require('soter')
+ const Soter = require('soter-sdk')
 
  const tronWeb = new TronWeb({
                         fullHost: 'https://api.shasta.trongrid.io',
@@ -118,6 +118,8 @@ await soter.add.addFile()
 await soter.add.signAddFileRawData()
 
 await soter.add.signAddFile()
+
+await soter.addStream.addStreamFile()
 ```
 
 # License
